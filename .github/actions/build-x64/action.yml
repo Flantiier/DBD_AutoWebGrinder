@@ -1,0 +1,25 @@
+name: "Release x64"
+description: "Build a Release version for Windows x64 and export it into a .zip file."
+
+inputs:
+  dotnet-version:
+    description: "Version .Net"
+    required: false
+    default: "9.0.x"
+
+  path:
+    description: ".Net solution path"
+    required: true
+    default: "./AutoWebGrinder/AutoWebGrinder.csproj"
+
+runs:
+  using: "composite"
+  steps:
+    - name: .Net Installation
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ inputs.dotnet-version }}
+    
+    - name: Restaurer les dépendances
+      run: dotnet restore "${{ inputs.path }}"
+      shell: bash    
