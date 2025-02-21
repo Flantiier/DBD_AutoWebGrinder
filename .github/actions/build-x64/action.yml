@@ -22,4 +22,4 @@ runs:
     
     - name: Restaurer les dépendances
       run: dotnet restore "${{ inputs.path }}"
-      shell: bash    
+      shell: bash
